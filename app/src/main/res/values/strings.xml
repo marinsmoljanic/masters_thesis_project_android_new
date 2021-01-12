@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Projektna evidencija</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="navigation_panel">Navigacijski panel</string>
+    <string name="navigation_person_button">Osobe</string>
+    <string name="navigation_project_button">Projekti</string>
+    <string name="navigation_role_button">Uloge</string>
+
+    <string name="persons_list">Lista projekata</string>
+    <string name="persons_back_button">Povratak</string>
+    <string name="person_master_details_textview">Tekst</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

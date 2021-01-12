@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.projectmanagement.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_personsFragment"
+            app:destination="@id/personsFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_projectsFragment"
+            app:destination="@id/projectsFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_rolesFragment"
+            app:destination="@id/rolesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personsFragment"
+        android:name="com.example.projectmanagement.PersonsFragment"
+        android:label="fragment_persons"
+        tools:layout="@layout/fragment_persons" >
+        <action
+            android:id="@+id/action_personsFragment_to_personMasterDetailFragment"
+            app:destination="@id/personMasterDetailFragment" />
+        <action
+            android:id="@+id/action_personsFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+        <argument
+            android:name="testArgument"
+            app:argType="string"
+            android:defaultValue='"defaultna vrijednost"' />
+    </fragment>
+    <fragment
+        android:id="@+id/personMasterDetailFragment"
+        android:name="com.example.projectmanagement.PersonMasterDetailFragment"
+        android:label="fragment_person_master_detail"
+        tools:layout="@layout/fragment_person_master_detail" >
+        <action
+            android:id="@+id/action_personMasterDetailFragment_to_personsFragment"
+            app:destination="@id/personsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectsFragment"
+        android:name="com.example.projectmanagement.ProjectsFragment"
+        android:label="fragment_projects"
+        tools:layout="@layout/fragment_projects" >
+        <action
+            android:id="@+id/action_projectsFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rolesFragment"
+        android:name="com.example.projectmanagement.RolesFragment"
+        android:label="fragment_roles"
+        tools:layout="@layout/fragment_roles" >
+        <action
+            android:id="@+id/action_rolesFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+</navigation>

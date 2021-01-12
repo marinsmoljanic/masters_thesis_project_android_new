@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PersonAddFragment">
+
+
+    <TextView
+        android:id="@+id/Naslov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unos podataka osobe"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/PrezimeUnos" />
+
+    <EditText
+        android:id="@+id/PrezimeUnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+
+        android:text="Prezime"
+        app:layout_constraintTop_toBottomOf="@id/Naslov"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ImeUnos" />
+
+
+    <EditText
+        android:id="@+id/ImeUnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+
+        android:text="Ime"
+        app:layout_constraintTop_toBottomOf="@id/PrezimeUnos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/OIBUnos"/>
+
+
+    <EditText
+        android:id="@+id/OIBUnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+
+        android:text="OIB"
+        app:layout_constraintTop_toBottomOf="@id/ImeUnos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/PovratniGumb" />
+
+    <Button
+        android:id="@+id/PohraniGumb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white"
+
+        android:text="Pohrani"
+        app:layout_constraintTop_toBottomOf="@id/OIBUnos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/PovratniGumb" />
+
+
+    <Button
+        android:id="@+id/PovratniGumb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Povratak"
+        app:layout_constraintTop_toBottomOf="@id/PohraniGumb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
