@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PersonRoleAddFragment">
+
+
+<TextView
+    android:id="@+id/Naslov"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Unos zaduzenja osoba"
+
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/SifProjektaUnos" />
+
+<Spinner
+    android:id="@+id/SifProjektaUnos"
+    android:layout_width="300dp"
+    android:layout_height="50dp"
+
+    app:layout_constraintBottom_toTopOf="@id/IdOsobeUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/Naslov" />
+
+<Spinner
+    android:id="@+id/IdOsobeUnos"
+    android:layout_width="300dp"
+    android:layout_height="50dp"
+
+    app:layout_constraintBottom_toTopOf="@id/IdUlogeUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/SifProjektaUnos" />
+
+<Spinner
+    android:id="@+id/IdUlogeUnos"
+    android:layout_width="300dp"
+    android:layout_height="50dp"
+
+    app:layout_constraintBottom_toTopOf="@id/DatDodjeleUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/IdOsobeUnos" />
+
+
+<DatePicker
+    android:id="@+id/DatDodjeleUnos"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:datePickerMode="spinner"
+    android:calendarViewShown="false"
+    android:ems="10"
+
+    app:layout_constraintTop_toBottomOf="@id/IdUlogeUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/PohraniGumb" />
+
+
+<Button
+    android:id="@+id/PohraniGumb"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="center"
+    android:background="@android:color/holo_orange_dark"
+    android:text="Pohrani"
+    android:textColor="@android:color/white"
+
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/PovratniGumb"/>
+
+<Button
+    android:id="@+id/PovratniGumb"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="center"
+    android:background="@android:color/holo_blue_light"
+    android:text="Povratak"
+    android:textColor="@android:color/white"
+
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

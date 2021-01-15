@@ -5,60 +5,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PersonAddFragment">
-
+    tools:context=".RoleAddFragment">
 
     <TextView
         android:id="@+id/Naslov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Unos podataka osobe"
+        android:text="Unos podataka uloge"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/PrezimeUnos" />
+        app:layout_constraintBottom_toTopOf="@id/NazivUlogeUnos" />
 
     <EditText
-        android:id="@+id/PrezimeUnos"
+        android:id="@+id/NazivUlogeUnos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
 
-        android:hint="Prezime"
+        android:hint="Naziv uloge"
         app:layout_constraintTop_toBottomOf="@id/Naslov"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ImeUnos" />
-
-
-    <EditText
-        android:id="@+id/ImeUnos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-
-        android:hint="Ime"
-        app:layout_constraintTop_toBottomOf="@id/PrezimeUnos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/OIBUnos"/>
-
-
-    <EditText
-        android:id="@+id/OIBUnos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-
-        android:hint="OIB"
-        app:layout_constraintTop_toBottomOf="@id/ImeUnos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/PohraniGumb" />
-
 
     <Button
         android:id="@+id/PohraniGumb"
@@ -70,10 +40,9 @@
         android:text="Pohrani"
         android:textColor="@android:color/white"
 
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/PovratniGumb"/>
+        app:layout_constraintBottom_toTopOf="@id/PovratniGumb" />
 
     <Button
         android:id="@+id/PovratniGumb"
@@ -89,6 +58,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

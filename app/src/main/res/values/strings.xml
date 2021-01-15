@@ -12,4 +12,27 @@
     <string name="person_master_details_textview">Tekst</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="projekti">
+        <item>Puntijarka</item>
+        <item>Pleternica</item>
+        <item>Belevee</item>
+        <item>Spansko HDLU</item>
+    </string-array>
+
+
+    <string-array name="osobe">
+        <item>Klara Rusan</item>
+        <item>Marin Smoljanic</item>
+        <item>Alexander Sacha Stankov</item>
+        <item>Alka Vuica</item>
+    </string-array>
+
+
+    <string-array name="uloge">
+        <item>Arhitekt</item>
+        <item>Ilustrator</item>
+        <item>Razvojni inzenjer</item>
+        <item>Cistac</item>
+    </string-array>
 </resources>

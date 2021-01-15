@@ -5,60 +5,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PersonAddFragment">
-
+    tools:context=".ProjectAddFragment">
 
     <TextView
         android:id="@+id/Naslov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Unos podataka osobe"
+        android:text="Unos podataka projekta"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/PrezimeUnos" />
+        app:layout_constraintBottom_toTopOf="@id/NazivUnos" />
 
     <EditText
-        android:id="@+id/PrezimeUnos"
+        android:id="@+id/NazivUnos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
 
-        android:hint="Prezime"
+        android:hint="Naziv projekta"
         app:layout_constraintTop_toBottomOf="@id/Naslov"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ImeUnos" />
+        app:layout_constraintBottom_toTopOf="@id/OpisUnos" />
 
 
     <EditText
-        android:id="@+id/ImeUnos"
+        android:id="@+id/OpisUnos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
 
-        android:hint="Ime"
-        app:layout_constraintTop_toBottomOf="@id/PrezimeUnos"
+        android:hint="Opis projekta"
+        app:layout_constraintTop_toBottomOf="@id/NazivUnos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/OIBUnos"/>
+        app:layout_constraintBottom_toTopOf="@id/DatPocetkaUnos"/>
 
 
-    <EditText
-        android:id="@+id/OIBUnos"
+    <DatePicker
+        android:id="@+id/DatPocetkaUnos"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
         android:ems="10"
-        android:inputType="textPersonName"
 
-        android:hint="OIB"
-        app:layout_constraintTop_toBottomOf="@id/ImeUnos"
+        app:layout_constraintTop_toBottomOf="@id/OpisUnos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/DatZavrsetkaUnos" />
+
+
+    <DatePicker
+        android:id="@+id/DatZavrsetkaUnos"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:ems="10"
+
+        app:layout_constraintTop_toBottomOf="@id/DatPocetkaUnos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/PohraniGumb" />
-
 
     <Button
         android:id="@+id/PohraniGumb"
@@ -70,10 +82,9 @@
         android:text="Pohrani"
         android:textColor="@android:color/white"
 
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/PovratniGumb"/>
+        app:layout_constraintBottom_toTopOf="@id/PovratniGumb" />
 
     <Button
         android:id="@+id/PovratniGumb"

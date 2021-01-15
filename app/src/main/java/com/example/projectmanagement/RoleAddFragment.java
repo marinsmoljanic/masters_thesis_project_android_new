@@ -8,26 +8,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
-
-import java.util.ArrayList;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RolesFragment#newInstance} factory method to
+ * Use the {@link RoleAddFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RolesFragment extends Fragment {
-    DbHandler readDb;
+public class RoleAddFragment extends Fragment {
+    EditText nazUloge;
+    Button pohrani;
     private Context context;
-    ArrayList<String> listaUloga;
-    ListView listView;
-    Button povratak;
+    DbHandler db;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -39,7 +38,7 @@ public class RolesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public RolesFragment() {
+    public RoleAddFragment() {
         // Required empty public constructor
     }
 
@@ -49,11 +48,11 @@ public class RolesFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment RolesFragment.
+     * @return A new instance of fragment UlogaFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RolesFragment newInstance(String param1, String param2) {
-        RolesFragment fragment = new RolesFragment();
+    public static RoleAddFragment newInstance(String param1, String param2) {
+        RoleAddFragment fragment = new RoleAddFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,41 +73,38 @@ public class RolesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = this.getActivity();
-        return inflater.inflate(R.layout.fragment_roles, container, false);
-    }
+        return inflater.inflate(R.layout.fragment_role_add, container, false); }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ListView listview = (ListView) view.findViewById(R.id.roles_list);
+        nazUloge = (EditText) view.findViewById(R.id.NazivUlogeUnos);
+        pohrani = (Button) view.findViewById(R.id.PohraniGumb);
 
-        RoleInfoList ulogaInfoList = new RoleInfoList(context, view);
-        listaUloga = ulogaInfoList.getList();
+        view.findViewById(R.id.PohraniGumb).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String _nazUloge = nazUloge.getText().toString();
 
-        RoleListAdapter adapter=new RoleListAdapter(context,
-                R.layout.fragment_role_row,
-                R.id.txt,
-                listaUloga);
-        // Bind data to the ListView
-        listview.setAdapter(adapter);
+                Role novaUloga = new Role(_nazUloge);
+
+                db = new DbHandler(context);
+                db.addUloga(novaUloga);
+
+                Toast.makeText(context, "Dodana nova uloga" + _nazUloge, Toast.LENGTH_LONG).show();
+
+                NavHostFragment.findNavController(RoleAddFragment.this)
+                        .navigate(R.id.action_ulogaFragment_to_rolesFragment); }});
+
 
         final NavController navController = Navigation.findNavController(view);
 
-        Button rolesBackButton = view.findViewById(R.id.roles_back_button);
+        Button rolesBackButton = view.findViewById(R.id.PovratniGumb);
         rolesBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_rolesFragment_to_startFragment);
-            }
-        });
-
-        Button addNewRoleButton = view.findViewById(R.id.add_new_role_button);
-        addNewRoleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_rolesFragment_to_ulogaFragment);
-            }
-        });
+                navController.navigate(R.id.action_ulogaFragment_to_rolesFragment);
+            }});
     }
 }

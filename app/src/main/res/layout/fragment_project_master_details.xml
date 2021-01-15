@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProjectMasterDetailsFragment">
+
+<!-- TODO: Update blank fragment layout -->
+<TextView
+    android:id="@+id/Naslov"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="Master detail page projekta"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/NazivUnos" />
+
+<EditText
+    android:id="@+id/NazivUnos"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:layout_marginTop="20dp"
+    android:inputType="textPersonName"
+
+    android:hint="Naziv projekta"
+    app:layout_constraintTop_toBottomOf="@id/Naslov"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/OpisUnos" />
+
+
+<EditText
+    android:id="@+id/OpisUnos"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName"
+
+    android:hint="Opis projekta"
+    app:layout_constraintTop_toBottomOf="@id/NazivUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/OIB"/>
+
+<DatePicker
+    android:id="@+id/DatPocetkaUnos"
+    android:layout_width="wrap_content"
+    android:layout_height="150dp"
+    android:datePickerMode="spinner"
+    android:calendarViewShown="false"
+    android:ems="10"
+
+    app:layout_constraintTop_toBottomOf="@id/OpisUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/DatZavrsetkaUnos" />
+
+
+<DatePicker
+    android:id="@+id/DatZavrsetkaUnos"
+    android:layout_width="wrap_content"
+    android:layout_height="150dp"
+    android:datePickerMode="spinner"
+    android:calendarViewShown="false"
+    android:ems="10"
+
+    app:layout_constraintTop_toBottomOf="@id/DatPocetkaUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/PohraniGumb" />
+
+<Button
+    android:id="@+id/PohraniGumb"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="20dp"
+
+    android:background="@android:color/holo_orange_dark"
+    android:text="Pohrani izmjene"
+    android:textColor="@android:color/white"
+
+    app:layout_constraintTop_toBottomOf="@id/OIB"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/LabelaZaduzenja"/>
+
+<TextView
+    android:id="@+id/LabelaZaduzenja"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="Popis zaduzenja po projektu"
+
+    app:layout_constraintTop_toBottomOf="@id/PohraniGumb"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/DodajNovoZaduzenje"/>
+
+
+<Button
+    android:id="@+id/DodajNovoZaduzenje"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="20dp"
+
+    android:background="@android:color/holo_blue_light"
+    android:text="Dodaj novo zaduzenje"
+    android:textColor="@android:color/white"
+
+    app:layout_constraintTop_toBottomOf="@id/LabelaZaduzenja"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"/>
+
+<ListView
+    android:id="@+id/lista_zaduzenja"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:layout_marginTop="25dp"
+
+    app:layout_constraintTop_toBottomOf="@id/LabelaZaduzenja"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

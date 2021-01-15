@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_startFragment_to_rolesFragment"
             app:destination="@id/rolesFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_personMasterDetailFragment"
+            app:destination="@id/personMasterDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/personsFragment"
@@ -35,6 +38,9 @@
             android:name="testArgument"
             app:argType="string"
             android:defaultValue='"defaultna vrijednost"' />
+        <action
+            android:id="@+id/action_personsFragment_to_personAddFragment"
+            app:destination="@id/personAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/personMasterDetailFragment"
@@ -44,6 +50,9 @@
         <action
             android:id="@+id/action_personMasterDetailFragment_to_personsFragment"
             app:destination="@id/personsFragment" />
+        <action
+            android:id="@+id/action_personMasterDetailFragment_to_personRoleAddFragment"
+            app:destination="@id/personRoleAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/projectsFragment"
@@ -53,6 +62,12 @@
         <action
             android:id="@+id/action_projectsFragment_to_startFragment"
             app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_projectsFragment_to_projectAddFragment"
+            app:destination="@id/projectAddFragment" />
+        <action
+            android:id="@+id/action_projectsFragment_to_projectMasterDetailsFragment"
+            app:destination="@id/projectMasterDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/rolesFragment"
@@ -62,5 +77,49 @@
         <action
             android:id="@+id/action_rolesFragment_to_startFragment"
             app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_rolesFragment_to_ulogaFragment"
+            app:destination="@id/ulogaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personAddFragment"
+        android:name="com.example.projectmanagement.PersonAddFragment"
+        android:label="fragment_person_add"
+        tools:layout="@layout/fragment_person_add" >
+        <action
+            android:id="@+id/action_personAddFragment_to_personsFragment"
+            app:destination="@id/personsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectAddFragment"
+        android:name="com.example.projectmanagement.ProjectAddFragment"
+        android:label="fragment_project_add"
+        tools:layout="@layout/fragment_project_add" >
+        <action
+            android:id="@+id/action_projectAddFragment_to_projectsFragment"
+            app:destination="@id/projectsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ulogaFragment"
+        android:name="com.example.projectmanagement.RoleAddFragment"
+        android:label="fragment_uloga"
+        tools:layout="@layout/fragment_role_add" >
+        <action
+            android:id="@+id/action_ulogaFragment_to_rolesFragment"
+            app:destination="@id/rolesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personRoleAddFragment"
+        android:name="com.example.projectmanagement.PersonRoleAddFragment"
+        android:label="fragment_person_role_add"
+        tools:layout="@layout/fragment_person_role_add" />
+    <fragment
+        android:id="@+id/projectMasterDetailsFragment"
+        android:name="com.example.projectmanagement.ProjectMasterDetailsFragment"
+        android:label="fragment_project_master_details"
+        tools:layout="@layout/fragment_project_master_details" >
+        <action
+            android:id="@+id/action_projectMasterDetailsFragment_to_personRoleAddFragment"
+            app:destination="@id/personRoleAddFragment" />
     </fragment>
 </navigation>

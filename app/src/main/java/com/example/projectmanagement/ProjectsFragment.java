@@ -1,5 +1,6 @@
 package com.example.projectmanagement;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +24,11 @@ import android.widget.Button;
  * create an instance of this fragment.
  */
 public class ProjectsFragment extends Fragment {
+    DbHandler readDb;
+    private Context context;
+    ArrayList<String> listaProjekata;
+    ListView listView;
+    Button povratak;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +74,7 @@ public class ProjectsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        context = this.getActivity();
         return inflater.inflate(R.layout.fragment_projects, container, false);
     }
 
@@ -72,6 +82,18 @@ public class ProjectsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ListView listview = (ListView) view.findViewById(R.id.projects_list);
+
+        ProjectInfoList projektInfoList = new ProjectInfoList(context, view);
+        listaProjekata = projektInfoList.getList();
+
+        ProjectsListAdapter adapter=new ProjectsListAdapter(context,
+                R.layout.fragment_project_row,
+                R.id.txt,
+                listaProjekata);
+        // Bind data to the ListView
+        listview.setAdapter(adapter);
 
         final NavController navController = Navigation.findNavController(view);
 
@@ -82,5 +104,14 @@ public class ProjectsFragment extends Fragment {
                 navController.navigate(R.id.action_projectsFragment_to_startFragment);
             }
         });
+
+        Button addProjectButton = view.findViewById(R.id.add_new_project_button);
+        addProjectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_projectsFragment_to_projectAddFragment);
+            }
+        });
+
     }
 }
