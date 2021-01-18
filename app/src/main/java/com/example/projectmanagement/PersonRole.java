@@ -1,9 +1,9 @@
 package com.example.projectmanagement;
 
 public class PersonRole {
-    int SifProjekta, IdOsobe, IdUloge, DatDodjele;
-
-    public PersonRole(int SifProjekta, int IdOsobe, int IdUloge, int DatDodjele){
+    int SifProjekta, IdOsobe, IdUloge;
+    String DatDodjele;
+    public PersonRole(int SifProjekta, int IdOsobe, int IdUloge, String DatDodjele){
         this.setSifProjekta(SifProjekta);
         this.setIdOsobe(IdOsobe);
         this.setIdUloge(IdUloge);
@@ -35,10 +35,10 @@ public class PersonRole {
     }
 
     // DatDodjele -> getter and setter
-    public int getDatDodjele() {
+    public String getDatDodjele() {
         return this.DatDodjele;
     }
-    public void setDatDodjele(int DatDodjele) {
+    public void setDatDodjele(String DatDodjele) {
         this.DatDodjele = DatDodjele;
     }
 

@@ -28,12 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void editPersonClick(View view){
         Button bt=(Button)view;
-        String projectId = (String) view.getTag();
+        String personId = (String) view.getTag();
         DbHandler db = new DbHandler(this);
-        int intProjectId  = Integer.valueOf(projectId);
+        int intPersonId  = Integer.valueOf(personId);
 
         final NavController navController = Navigation.findNavController(view);
-
         navController.navigate(R.id.action_personsFragment_to_personMasterDetailFragment);
 
         // StartFragmentDirections.ActionStartFragmentToPersonsFragment action = StartFragmentDirections.actionStartFragmentToPersonsFragment();
@@ -60,5 +59,15 @@ public class MainActivity extends AppCompatActivity {
         int intProjectId  = Integer.valueOf(projectId);
         Toast.makeText(this, "Obrisan projekt", Toast.LENGTH_LONG).show();
         db.deleteProject(intProjectId);
+    }
+
+    public void editProjectClick(View view){
+        Button bt=(Button)view;
+        String projectId = (String) view.getTag();
+        DbHandler db = new DbHandler(this);
+        //c int intProjectId  = Integer.valueOf(projectId);
+
+        final NavController navController = Navigation.findNavController(view);
+        navController.navigate(R.id.action_projectsFragment_to_projectMasterDetailsFragment);
     }
 }

@@ -18,7 +18,7 @@ public class DbHandler extends SQLiteOpenHelper {
     public static final String TABLICA_OSOBA = "Osoba";
     public static final String TABLICA_PROJECT = "Project";
     public static final String TABLICA_ULOGA = "Uloga";
-    public static final String TABLICA_ULOGAOSOBE = "UlogaOsobe";
+    public static final String TABLICA_ULOGAOSOBE = "Zaduzenje";
 
     public static final String Col1Osoba = "IdOsobe";
     public static final String Col2Osoba = "PrezimeOsobe";
@@ -55,7 +55,7 @@ public class DbHandler extends SQLiteOpenHelper {
         createTableProjekt(db);
         // dropTableProjekt(db);
         createTableUloga(db);
-        createTableUlogaOsobe(db);
+        // createTableUlogaOsobe(db);
     }
 
     @Override
@@ -305,7 +305,7 @@ public class DbHandler extends SQLiteOpenHelper {
         String Create_Table = "CREATE TABLE " + TABLICA_ULOGAOSOBE + "(" + Col1UlogaOsobe + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + Col2UlogaOsobe + " INTEGER,"
                 + Col3UlogaOsobe + " INTEGER,"
-                + Col4UlogaOsobe + " INTEGER " + ")";
+                + Col4UlogaOsobe + " TEXT " + ")";
 
         db.execSQL(Create_Table);
     }
@@ -313,6 +313,7 @@ public class DbHandler extends SQLiteOpenHelper {
     public void addUlogaOsobe(PersonRole ulogaOsobe)
     {
         SQLiteDatabase db=this.getWritableDatabase();
+        // createTableUlogaOsobe(db);
         ContentValues cv=new ContentValues();
         cv.put(Col1Projekt, ulogaOsobe.getSifProjekta());
         cv.put(Col2Projekt, ulogaOsobe.getIdOsobe());
