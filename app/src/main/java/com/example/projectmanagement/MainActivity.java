@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
     }
 
@@ -32,8 +34,20 @@ public class MainActivity extends AppCompatActivity {
         DbHandler db = new DbHandler(this);
         int intPersonId  = Integer.valueOf(personId);
 
+        // POSPREMITI U BAZU TRENUTNO AKTIVNU OSOBU PREMA intPERSONId
+
+        db.saveActivePerson(intPersonId);
+
+        /*
+        readDb.dropAndCreate();
+
+        PersonRole novaUlogaOsobe = new PersonRole(1, 1, 1, "2020-11-11");
+        readDb.addUlogaOsobe(novaUlogaOsobe);
+        */
+
         final NavController navController = Navigation.findNavController(view);
         navController.navigate(R.id.action_personsFragment_to_personMasterDetailFragment);
+
 
         // StartFragmentDirections.ActionStartFragmentToPersonsFragment action = StartFragmentDirections.actionStartFragmentToPersonsFragment();
         // StartFragmentDirections.ActionStartFragmentToPersonsFragment action = StartFragmentDirections.actionStartFragmentToPersonsFragment();

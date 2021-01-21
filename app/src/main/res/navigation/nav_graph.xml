@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_personMasterDetailFragment_to_personRoleAddFragment"
             app:destination="@id/personRoleAddFragment" />
+        <action
+            android:id="@+id/action_personMasterDetailFragment_to_projectRoleByPersonListFragment"
+            app:destination="@id/projectRoleByPersonListFragment" />
     </fragment>
     <fragment
         android:id="@+id/projectsFragment"
@@ -80,6 +83,9 @@
         <action
             android:id="@+id/action_rolesFragment_to_ulogaFragment"
             app:destination="@id/ulogaFragment" />
+        <action
+            android:id="@+id/action_rolesFragment_to_roleEditFragment"
+            app:destination="@id/roleEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/personAddFragment"
@@ -121,5 +127,56 @@
         <action
             android:id="@+id/action_projectMasterDetailsFragment_to_personRoleAddFragment"
             app:destination="@id/personRoleAddFragment" />
+        <action
+            android:id="@+id/action_projectMasterDetailsFragment_to_projectRoleByProjectListFragment"
+            app:destination="@id/projectRoleByProjectListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roleEditFragment"
+        android:name="com.example.projectmanagement.RoleEditFragment"
+        android:label="fragment_role_edit"
+        tools:layout="@layout/fragment_role_edit" >
+        <action
+            android:id="@+id/action_roleEditFragment_to_rolesFragment"
+            app:destination="@id/rolesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectRoleByPersonListFragment"
+        android:name="com.example.projectmanagement.ProjectRoleByPersonListFragment"
+        android:label="fragment_project_role_by_person_list"
+        tools:layout="@layout/fragment_project_role_by_person_list" >
+        <action
+            android:id="@+id/action_projectRoleByPersonListFragment_to_projectRoleByPersonUpdateFragment"
+            app:destination="@id/projectRoleByPersonUpdateFragment" />
+        <action
+            android:id="@+id/action_projectRoleByPersonListFragment_to_personMasterDetailFragment"
+            app:destination="@id/personMasterDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectRoleByPersonUpdateFragment"
+        android:name="com.example.projectmanagement.ProjectRoleByPersonUpdateFragment"
+        android:label="fragment_project_role_by_person_update"
+        tools:layout="@layout/fragment_project_role_by_person_update" >
+        <action
+            android:id="@+id/action_projectRoleByPersonUpdateFragment_to_projectRoleByPersonListFragment"
+            app:destination="@id/projectRoleByPersonListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectRoleByProjectListFragment"
+        android:name="com.example.projectmanagement.ProjectRoleByProjectListFragment"
+        android:label="fragment_project_role_by_project_list"
+        tools:layout="@layout/fragment_project_role_by_project_list" >
+        <action
+            android:id="@+id/action_projectRoleByProjectListFragment_to_projectRoleByProjectUpdateFragment"
+            app:destination="@id/projectRoleByProjectUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectRoleByProjectUpdateFragment"
+        android:name="com.example.projectmanagement.ProjectRoleByProjectUpdateFragment"
+        android:label="fragment_project_role_by_project_update"
+        tools:layout="@layout/fragment_project_role_by_project_update" >
+        <action
+            android:id="@+id/action_projectRoleByProjectUpdateFragment_to_projectRoleByProjectListFragment"
+            app:destination="@id/projectRoleByProjectListFragment" />
     </fragment>
 </navigation>

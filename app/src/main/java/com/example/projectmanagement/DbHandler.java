@@ -51,10 +51,13 @@ public class DbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        createTableOsoba(db);
-        createTableProjekt(db);
+        // createTableOsoba(db);
+        // createTableProjekt(db);
         // dropTableProjekt(db);
-        createTableUloga(db);
+        // createTableUloga(db);
+
+        // dropTableUlogaOsobe(db);
+
         // createTableUlogaOsobe(db);
     }
 
@@ -65,6 +68,48 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
 
+    // TRANZICIJSKE AKCIJE
+
+
+    public void saveActivePerson(int personId) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        String Create_Table = "CREATE TABLE IF NOT EXISTS " + "ActivePerson" +
+                " (Id INTEGER PRIMARY KEY, PersonId INTEGER)";
+
+        db.execSQL(Create_Table);
+
+        ContentValues cv=new ContentValues();
+        cv.put("Id", 1);
+        cv.put("PersonId", personId);
+        db.insert("ActivePerson", null, cv);
+
+        // "UPDATE uloga SET NazUloge='\(naziv)' WHERE IdUloge=(?);"
+
+        String UpdateTable = "UPDATE ActivePerson SET PersonId='" + personId + "' WHERE Id=1;";
+
+        db.execSQL(UpdateTable);
+        db.close();
+    }
+
+    public int readActivePerson() {
+        String PersonIdStr = "";
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT PersonId FROM ActivePerson WHERE Id=1",
+                new String[]{});
+
+        if(cursor.getCount()>0) {
+            try {
+                cursor.moveToFirst();
+                PersonIdStr = cursor.getString(0);
+            } finally {
+                cursor.close();
+            }
+
+            cursor.close();
+        }
+
+        return Integer.parseInt(PersonIdStr);
+    }
 
 
 
@@ -122,12 +167,11 @@ public class DbHandler extends SQLiteOpenHelper {
             // osoba_str = cursor.getString(0);
             try {
                 cursor.moveToFirst();
-                while (cursor.moveToNext()) {
-                    String prezime = cursor.getString(0);
-                    String ime = cursor.getString(1);
-                    String OIB = cursor.getString(2);
-                    String osoba = IdOsobe.toString() + ";"  + prezime + ";" + ime + ";" + OIB;
-                }
+                String prezime = cursor.getString(0);
+                String ime = cursor.getString(1);
+                String OIB = cursor.getString(2);
+                osoba_str = IdOsobe.toString() + ";"  + prezime + ";" + ime + ";" + OIB;
+
             } finally {
                 cursor.close();
             }
@@ -237,6 +281,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
 
 
+
     // ULOGA: DbHandleri
 
     public void createTableUloga(SQLiteDatabase db) {
@@ -301,24 +346,85 @@ public class DbHandler extends SQLiteOpenHelper {
 
     // ULOGA OSOBE: DbHandleri
 
+
+
+    /*
+    public static final String DATABASE_NAME = "Kompanija.db";
+    public static final String TABLICA_OSOBA = "Osoba";
+    public static final String TABLICA_PROJECT = "Project";
+    public static final String TABLICA_ULOGA = "Uloga";
+    public static final String TABLICA_ULOGAOSOBE = "Zaduzenje";
+
+    public static final String Col1Osoba = "IdOsobe";
+    public static final String Col2Osoba = "PrezimeOsobe";
+    public static final String Col3Osoba = "ImeOsobe";
+    public static final String Col4Osoba = "OIB";
+
+
+    public static final String Col1Projekt = "SifProjekta";
+    public static final String Col2Projekt = "NazProjekta";
+    public static final String Col3Projekt = "OpisProjekta";
+    public static final String Col4Projekt = "DatPocetka";
+    public static final String Col5Projekt = "DatZavrsetka";
+
+    public static final String Col1Uloga = "IdUloge";
+    public static final String Col2Uloga = "NazUloge";
+
+
+    public static final String Col1UlogaOsobe = "SifProjekta";
+    public static final String Col2UlogaOsobe = "IdOsobe";
+    public static final String Col3UlogaOsobe = "IdUloge";
+    public static final String Col4UlogaOsobe = "DatDodjele";
+
+    */
+
+    public void dropAndCreate(){
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        dropTableUlogaOsobe(db);
+        createTableUlogaOsobe(db);
+
+    }
+
+    public void dropTableUlogaOsobe(SQLiteDatabase db){
+        db.execSQL("DROP TABLE IF EXISTS " + TABLICA_ULOGAOSOBE);
+        //onCreate(db);
+    }
+
     public void createTableUlogaOsobe(SQLiteDatabase db) {
-        String Create_Table = "CREATE TABLE " + TABLICA_ULOGAOSOBE + "(" + Col1UlogaOsobe + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+        String Create_Table = "CREATE TABLE " + TABLICA_ULOGAOSOBE + " (IdZaduzenja INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Col1UlogaOsobe + " INTEGER,"
                 + Col2UlogaOsobe + " INTEGER,"
                 + Col3UlogaOsobe + " INTEGER,"
                 + Col4UlogaOsobe + " TEXT " + ")";
 
-        db.execSQL(Create_Table);
+        String CreateTable = "CREATE TABLE IF NOT EXISTS Zaduzenje " +
+                                    "(SifProjekta INTEGER,IdOsobe INTEGER,IdUloge INTEGER,DatDodjele TEXT," +
+                                    "FOREIGN KEY (SifProjekta) REFERENCES Project(SifProjekta) ON DELETE CASCADE," +
+                                    "FOREIGN KEY (IdOsobe) REFERENCES Osoba(IdOsobe) ON DELETE CASCADE);";
+
+        db.execSQL(CreateTable);
     }
+
+    /*
+    *
+    public static final String Col1UlogaOsobe = "SifProjekta";
+    public static final String Col2UlogaOsobe = "IdOsobe";
+    public static final String Col3UlogaOsobe = "IdUloge";
+    public static final String Col4UlogaOsobe = "DatDodjele";
+    *
+    *
+    * */
 
     public void addUlogaOsobe(PersonRole ulogaOsobe)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         // createTableUlogaOsobe(db);
         ContentValues cv=new ContentValues();
-        cv.put(Col1Projekt, ulogaOsobe.getSifProjekta());
-        cv.put(Col2Projekt, ulogaOsobe.getIdOsobe());
-        cv.put(Col3Projekt, ulogaOsobe.getIdUloge());
-        cv.put(Col4Projekt, ulogaOsobe.getDatDodjele());
+        cv.put(Col1UlogaOsobe, ulogaOsobe.getSifProjekta());
+        cv.put(Col2UlogaOsobe, ulogaOsobe.getIdOsobe());
+        cv.put(Col3UlogaOsobe, ulogaOsobe.getIdUloge());
+        cv.put(Col4UlogaOsobe, ulogaOsobe.getDatDodjele());
         db.insert(TABLICA_ULOGAOSOBE, null, cv);
         db.close();
     }
@@ -327,6 +433,27 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery("SELECT SifProjekta, IdOsobe, IdUloge, DatDodjele FROM " + TABLICA_ULOGAOSOBE,
                 new String[]{});
+        return cursor;
+    }
+
+    public Cursor readAllZaduzenja(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT * FROM Zaduzenje",
+                new String[]{});
+        return cursor;
+    }
+
+    public Cursor readAllUlogaOsobe(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        String readPersonRolesQuery = "SELECT Zaduzenje.SifProjekta, Zaduzenje.IdOsobe, Zaduzenje.IdUloge, Zaduzenje.DatDodjele, Project.NazProjekta, Osoba.ImeOsobe, Osoba.PrezimeOsobe, Uloga.NazUloge " +
+                              "FROM (((Zaduzenje " +
+                              "INNER JOIN Project ON Zaduzenje.SifProjekta = Project.SifProjekta) " +
+                              "INNER JOIN Osoba ON Zaduzenje.IdOsobe = Osoba.IdOsobe) " +
+                              "INNER JOIN Uloga ON Zaduzenje.IdUloge = Uloga.IdUloge)";
+
+
+
+        Cursor cursor=db.rawQuery(readPersonRolesQuery, new String[]{});
         return cursor;
     }
 

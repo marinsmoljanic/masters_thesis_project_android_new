@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class PersonsListAdapter extends ArrayAdapter<String> {
+public class PersonRolesByPersonListAdapter extends ArrayAdapter<String> {
     int groupid;
     ArrayList<String> item_list;
     ArrayList<String> desc;
     Context context;
 
-    public PersonsListAdapter(Context context, int vg, int id, ArrayList<String> item_list){
+    public PersonRolesByPersonListAdapter(Context context, int vg, int id, ArrayList<String> item_list){
         super(context,vg, id, item_list);
         this.context=context;
         groupid=vg;
@@ -51,13 +51,15 @@ public class PersonsListAdapter extends ArrayAdapter<String> {
 
         String[] parts = item_list.get(position).split(";");
 
-        holder.textview.setText(parts[1] + " " + parts[2] + " " + parts[3]);
-        holder.buttonUpdate.setText("Detalji");
-        holder.buttonDelete.setText("Obriši");
+        holder.textview.setText("Uloga: " + parts[7] + " " + "\n\n" +
+                                "Projekt: " + parts[4] + " " + "\n\n" +
+                                "Datum dodjele: " + parts[3] + " " + "\n");
+        holder.buttonUpdate.setText("Uredi");
+        holder.buttonDelete.setText("Brisi");
 
-        int osobaId = Integer.parseInt(parts[0]);
-        holder.buttonDelete.setTag(String.valueOf(osobaId));
-        holder.buttonUpdate.setTag(String.valueOf(osobaId));
+        int personRoleId = Integer.parseInt(parts[0]);
+        holder.buttonDelete.setTag(String.valueOf(personRoleId));
+        holder.buttonUpdate.setTag(String.valueOf(personRoleId));
 
         /*
         final NavController navController = Navigation.findNavController(rowView);
@@ -70,7 +72,9 @@ public class PersonsListAdapter extends ArrayAdapter<String> {
         });
         */
 
-
         return rowView;
     }
+
+
+
 }

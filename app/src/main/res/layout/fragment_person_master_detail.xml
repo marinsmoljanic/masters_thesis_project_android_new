@@ -13,8 +13,8 @@ tools:context=".PersonMasterDetailFragment">
         android:id="@+id/Naslov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Master detail page osobe"
+        android:layout_marginTop="50dp"
+        android:text="Glavna stranica detalja osobe"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,10 +22,11 @@ tools:context=".PersonMasterDetailFragment">
 
     <EditText
         android:id="@+id/PrezimeUnos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:ems="10"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:inputType="textPersonName"
 
         android:hint="Prezime"
@@ -37,8 +38,10 @@ tools:context=".PersonMasterDetailFragment">
 
     <EditText
         android:id="@+id/ImeUnos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
 
@@ -54,7 +57,7 @@ tools:context=".PersonMasterDetailFragment">
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="OIB OSOBE"
-        android:textSize="15sp"
+        android:textSize="20sp"
 
         app:layout_constraintTop_toBottomOf="@id/ImeUnos"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,10 +66,10 @@ tools:context=".PersonMasterDetailFragment">
 
     <Button
         android:id="@+id/PohraniGumb"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
 
         android:background="@android:color/holo_orange_dark"
         android:text="Pohrani izmjene"
@@ -78,11 +81,24 @@ tools:context=".PersonMasterDetailFragment">
         app:layout_constraintBottom_toTopOf="@id/LabelaZaduzenja"/>
 
     <TextView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray"
+
+        app:layout_constraintTop_toBottomOf="@id/PohraniGumb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/LabelaZaduzenja" />
+
+    <TextView
         android:id="@+id/LabelaZaduzenja"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Popis zaduzenja osobe"
+        android:layout_marginTop="100dp"
+        android:text="Zaduženja osobe"
 
         app:layout_constraintTop_toBottomOf="@id/PohraniGumb"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,29 +108,35 @@ tools:context=".PersonMasterDetailFragment">
 
     <Button
         android:id="@+id/DodajNovoZaduzenje"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
 
         android:background="@android:color/holo_blue_light"
-        android:text="Dodaj novo zaduzenje"
+        android:text="Dodaj novo zaduženje"
         android:textColor="@android:color/white"
 
         app:layout_constraintTop_toBottomOf="@id/LabelaZaduzenja"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/OtvoriListuZaduzenjaOsobe"/>
 
-    <ListView
-        android:id="@+id/lista_zaduzenja"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginTop="25dp"
+    <Button
+        android:id="@+id/OtvoriListuZaduzenjaOsobe"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
 
-        app:layout_constraintTop_toBottomOf="@id/LabelaZaduzenja"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Izlistaj zaduženja osobe"
+        android:textColor="@android:color/white"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DodajNovoZaduzenje" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
