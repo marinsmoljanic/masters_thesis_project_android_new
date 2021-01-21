@@ -1,5 +1,6 @@
 package com.example.projectmanagement;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,15 +13,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class ProjectMasterDetailsFragment extends Fragment {
+    private Context context;
+
     public ProjectMasterDetailsFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        context = this.getActivity();
         return inflater.inflate(R.layout.fragment_project_master_details, container, false);
     }
 
@@ -29,6 +34,22 @@ public class ProjectMasterDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         final NavController navController = Navigation.findNavController(view);
+
+        DbHandler db = new DbHandler(context);
+
+        int activeProjectId = db.readActiveProject();
+        String projekt = db.getProjekt(activeProjectId);
+
+        String[] parts = projekt.split(";");
+
+        String imeProjekta = parts[1];
+        String opisProjekta = parts[2];
+
+        EditText editTextNaziv = view.findViewById(R.id.NazivUnos);
+        EditText editTextOpis = view.findViewById(R.id.OpisUnos);
+
+        editTextNaziv.setText(imeProjekta);
+        editTextOpis.setText(opisProjekta);
 
         Button personRoleButton = view.findViewById(R.id.DodajNovoZaduzenje);
         personRoleButton.setOnClickListener(new View.OnClickListener() {

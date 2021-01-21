@@ -51,11 +51,11 @@ public class ProjectRoleByProjectListFragment extends Fragment {
 
         final NavController navController = Navigation.findNavController(view);
 
-        Button personMasterDetailsBackButton = view.findViewById(R.id.person_master_details_back_button);
+        Button personMasterDetailsBackButton = view.findViewById(R.id.project_master_details_back_button);
         personMasterDetailsBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_projectRoleByPersonListFragment_to_personMasterDetailFragment);
+                navController.navigate(R.id.action_projectRoleByProjectListFragment_to_projectMasterDetailsFragment);
             }
         });
     }

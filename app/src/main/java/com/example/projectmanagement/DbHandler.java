@@ -111,6 +111,45 @@ public class DbHandler extends SQLiteOpenHelper {
         return Integer.parseInt(PersonIdStr);
     }
 
+    public void saveActiveProject(int projectId) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        String Create_Table = "CREATE TABLE IF NOT EXISTS " + "ActiveProject" +
+                " (Id INTEGER PRIMARY KEY, ProjectId INTEGER)";
+
+        db.execSQL(Create_Table);
+
+        ContentValues cv=new ContentValues();
+        cv.put("Id", 1);
+        cv.put("ProjectId", projectId);
+        db.insert("ActiveProject", null, cv);
+
+        // "UPDATE uloga SET NazUloge='\(naziv)' WHERE IdUloge=(?);"
+
+        String UpdateTable = "UPDATE ActiveProject SET ProjectId='" + projectId + "' WHERE Id=1;";
+
+        db.execSQL(UpdateTable);
+        db.close();
+    }
+
+    public int readActiveProject() {
+        String ProjectIdStr = "";
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT ProjectId FROM ActiveProject WHERE Id=1",
+                new String[]{});
+
+        if(cursor.getCount()>0) {
+            try {
+                cursor.moveToFirst();
+                ProjectIdStr = cursor.getString(0);
+            } finally {
+                cursor.close();
+            }
+
+            cursor.close();
+        }
+
+        return Integer.parseInt(ProjectIdStr);
+    }
 
 
 
@@ -239,18 +278,27 @@ public class DbHandler extends SQLiteOpenHelper {
 
 
     public String getProjekt(Integer SifProjekta){
-        String osoba_str = "";
+        String projekt_str = "";
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("SELECT ImeOsobe FROM Osoba WHERE IdOsobe=2",
+        Cursor cursor=db.rawQuery("SELECT NazProjekta, OpisProjekta, DatPocetka, DatZavrsetka FROM Project WHERE SifProjekta=" + SifProjekta,
                 new String[]{});
 
         if(cursor.getCount()>0) {
-            cursor.moveToFirst();
-            osoba_str = cursor.getString(0);
+            try {
+                cursor.moveToFirst();
+                String naziv = cursor.getString(0);
+                String opis = cursor.getString(1);
+                String datumPocetka = cursor.getString(2);
+                String datumZavrsetka = cursor.getString(3);
+
+                projekt_str = SifProjekta.toString() + ";"  + naziv + ";" + opis + ";" + datumPocetka + ";" + datumZavrsetka;
+
+            } finally {
+                cursor.close();
+            }
             cursor.close();
         }
-
-        return osoba_str;
+        return projekt_str;
     }
 
     public void deleteProject(int id)

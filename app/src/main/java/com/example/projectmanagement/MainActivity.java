@@ -76,10 +76,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void editProjectClick(View view){
-        Button bt=(Button)view;
         String projectId = (String) view.getTag();
         DbHandler db = new DbHandler(this);
-        //c int intProjectId  = Integer.valueOf(projectId);
+        int intProjectId  = Integer.valueOf(projectId);
+
+        // POSPREMITI U BAZU TRENUTNO AKTIVNI PROJEKT PREMA intProjectId
+
+        db.saveActiveProject(intProjectId);
 
         final NavController navController = Navigation.findNavController(view);
         navController.navigate(R.id.action_projectsFragment_to_projectMasterDetailsFragment);

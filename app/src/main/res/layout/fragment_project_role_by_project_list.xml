@@ -23,7 +23,7 @@
         android:background="@android:color/darker_gray"
         android:textColor="@android:color/white"
         android:layout_weight="1"
-        android:id="@+id/person_master_details_back_button"
+        android:id="@+id/project_master_details_back_button"
         android:text="@string/persons_back_button"/>
 </LinearLayout>
 

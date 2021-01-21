@@ -63,6 +63,8 @@ public class ProjectsListAdapter extends ArrayAdapter<String> {
 
         int projektId = Integer.parseInt(parts[0]);
         holder.buttonDelete.setTag(String.valueOf(projektId));
+        holder.buttonUpdate.setTag(String.valueOf(projektId));
+
         return rowView;
     }
 
