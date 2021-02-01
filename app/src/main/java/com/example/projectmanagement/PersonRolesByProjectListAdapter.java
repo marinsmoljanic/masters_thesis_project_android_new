@@ -51,8 +51,8 @@ public class PersonRolesByProjectListAdapter extends ArrayAdapter<String> {
         String[] parts = item_list.get(position).split(";");
 
         holder.textview.setText("Uloga: " + parts[7] + " " + "\n\n" +
-                "Projekt: " + parts[4] + " " + "\n\n" +
-                "Datum dodjele: " + parts[3] + " " + "\n");
+                                "Projekt: " + parts[4] + " " + "\n\n" +
+                                "Datum dodjele: " + parts[3] + " " + "\n");
         holder.buttonUpdate.setText("Uredi");
         holder.buttonDelete.setText("Brisi");
 
@@ -60,16 +60,7 @@ public class PersonRolesByProjectListAdapter extends ArrayAdapter<String> {
         holder.buttonDelete.setTag(String.valueOf(personRoleId));
         holder.buttonUpdate.setTag(String.valueOf(personRoleId));
 
-        /*
-        final NavController navController = Navigation.findNavController(rowView);
-        rowView.findViewById(R.id.btazu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(PersonsListAdapter.this)
-                        .navigate(R.id.action_personsFragment_to_personMasterDetailFragment);
-            }
-        });
-        */
+
 
         return rowView;
     }

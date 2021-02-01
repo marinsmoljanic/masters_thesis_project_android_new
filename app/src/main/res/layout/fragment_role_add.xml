@@ -36,7 +36,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
 
-        android:background="@android:color/holo_orange_dark"
+        android:background="@drawable/upper_rounded"
         android:text="Pohrani"
         android:textColor="@android:color/white"
 
@@ -50,7 +50,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
 
-        android:background="@android:color/holo_blue_light"
+        android:background="@android:color/darker_gray"
         android:text="Povratak"
         android:textColor="@android:color/white"
 

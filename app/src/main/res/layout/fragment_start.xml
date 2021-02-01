@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".StartFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -28,7 +29,11 @@
         android:layout_width="fill_parent"
         android:layout_height="70dp"
         android:layout_marginTop="150dp"
-        android:background="@android:color/holo_orange_dark"
+
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/rounded_corners"
+
         android:textColor="@android:color/white"
         android:text="@string/navigation_person_button"
         android:textSize="22sp"
@@ -44,7 +49,11 @@
         android:layout_width="fill_parent"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
-        android:background="@android:color/holo_orange_dark"
+
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/rounded_corners"
+
         android:textColor="@android:color/white"
         android:text="@string/navigation_project_button"
         android:textSize="22sp"
@@ -59,7 +68,11 @@
         android:layout_width="fill_parent"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
-        android:background="@android:color/holo_orange_dark"
+
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/rounded_corners"
+
         android:textColor="@android:color/white"
         android:text="@string/navigation_role_button"
         android:textSize="22sp"

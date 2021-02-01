@@ -53,10 +53,12 @@ public class RoleListAdapter extends ArrayAdapter<String> {
 
         holder.textview.setText(parts[1]);
         holder.buttonUpdate.setText("Uredi");
-        holder.buttonDelete.setText("Brisi");
+        holder.buttonDelete.setText("Obriši");
 
         int ulogaId = Integer.parseInt(parts[0]);
         holder.buttonDelete.setTag(String.valueOf(ulogaId));
+        holder.buttonUpdate.setTag(String.valueOf(ulogaId));
+
         return rowView;
 
     }

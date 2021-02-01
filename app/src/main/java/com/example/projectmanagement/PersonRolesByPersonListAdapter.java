@@ -55,22 +55,11 @@ public class PersonRolesByPersonListAdapter extends ArrayAdapter<String> {
                                 "Projekt: " + parts[4] + " " + "\n\n" +
                                 "Datum dodjele: " + parts[3] + " " + "\n");
         holder.buttonUpdate.setText("Uredi");
-        holder.buttonDelete.setText("Brisi");
+        holder.buttonDelete.setText("Obriši");
 
         int personRoleId = Integer.parseInt(parts[0]);
         holder.buttonDelete.setTag(String.valueOf(personRoleId));
         holder.buttonUpdate.setTag(String.valueOf(personRoleId));
-
-        /*
-        final NavController navController = Navigation.findNavController(rowView);
-        rowView.findViewById(R.id.btazu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(PersonsListAdapter.this)
-                        .navigate(R.id.action_personsFragment_to_personMasterDetailFragment);
-            }
-        });
-        */
 
         return rowView;
     }

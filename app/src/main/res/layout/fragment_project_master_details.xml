@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProjectMasterDetailsFragment">
+    tools:context=".ProjectMasterDetailsFragment"
+>
 
 <!-- TODO: Update blank fragment layout -->
 <TextView
@@ -40,12 +46,55 @@
     android:layout_height="wrap_content"
     android:ems="10"
     android:inputType="textPersonName"
+    android:layout_marginTop="20dp"
+
 
     android:hint="Opis projekta"
     app:layout_constraintTop_toBottomOf="@id/NazivUnos"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintBottom_toTopOf="@id/DatPocetkaUnos"/>
+
+<TextView
+    android:id="@+id/trenutniDatumPocetka"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="Početak projekta: "
+    android:textStyle="bold"
+
+
+    app:layout_constraintTop_toBottomOf="@+id/OpisUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/trenutniDatumZavrsetka" />
+
+<TextView
+    android:id="@+id/trenutniDatumZavrsetka"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text="Završetak projekta: "
+    android:textStyle="bold"
+
+
+    app:layout_constraintTop_toBottomOf="@+id/trenutniDatumPocetka"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/novaVrijednost" />
+
+
+<TextView
+    android:id="@+id/novaVrijednost"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="Novi datum početka projekta: "
+
+    app:layout_constraintTop_toBottomOf="@+id/trenutniDatumZavrsetka"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/DatPocetkaUnos" />
 
 <DatePicker
     android:id="@+id/DatPocetkaUnos"
@@ -56,6 +105,18 @@
     android:ems="10"
 
     app:layout_constraintTop_toBottomOf="@id/OpisUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/novaVrijednostZavrsetka" />
+
+<TextView
+    android:id="@+id/novaVrijednostZavrsetka"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="Novi datum završetka projekta: "
+
+    app:layout_constraintTop_toBottomOf="@+id/DatPocetkaUnos"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintBottom_toTopOf="@id/DatZavrsetkaUnos" />
@@ -81,7 +142,7 @@
     android:layout_gravity="center"
     android:layout_marginTop="20dp"
 
-    android:background="@android:color/holo_orange_dark"
+    android:background="@drawable/rounded_corners"
     android:text="Pohrani izmjene"
     android:textColor="@android:color/white"
 
@@ -123,7 +184,7 @@
     android:layout_gravity="center"
     android:layout_marginTop="20dp"
 
-    android:background="@android:color/holo_blue_light"
+    android:background="@drawable/rounded_corners_darker"
     android:text="Dodaj novo zaduzenje"
     android:textColor="@android:color/white"
 
@@ -137,15 +198,20 @@
     android:layout_height="50dp"
     android:layout_gravity="center"
     android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
 
-    android:background="@android:color/holo_blue_dark"
+    android:background="@drawable/rounded_corners_darker"
     android:text="Izlistaj zaduženja po projektu"
     android:textColor="@android:color/white"
 
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/DodajNovoZaduzenje" />
+    app:layout_constraintTop_toBottomOf="@id/DodajNovoZaduzenje"
+
+    app:layout_constraintBottom_toBottomOf="parent" />
 
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

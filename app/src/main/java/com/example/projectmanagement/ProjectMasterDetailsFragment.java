@@ -44,12 +44,20 @@ public class ProjectMasterDetailsFragment extends Fragment {
 
         String imeProjekta = parts[1];
         String opisProjekta = parts[2];
+        String datumPocetka = parts[3];
+        String datumZavrsetka = parts[4];
 
         EditText editTextNaziv = view.findViewById(R.id.NazivUnos);
         EditText editTextOpis = view.findViewById(R.id.OpisUnos);
+        TextView datumPocetkaText = view.findViewById(R.id.trenutniDatumPocetka);
+        TextView datumZavrsetkaText = view.findViewById(R.id.trenutniDatumZavrsetka);
 
         editTextNaziv.setText(imeProjekta);
         editTextOpis.setText(opisProjekta);
+
+        datumPocetkaText.setText(datumPocetkaText.getText().toString() + datumPocetka);
+        datumZavrsetkaText.setText(datumZavrsetkaText.getText().toString() + datumZavrsetka);
+
 
         Button personRoleButton = view.findViewById(R.id.DodajNovoZaduzenje);
         personRoleButton.setOnClickListener(new View.OnClickListener() {

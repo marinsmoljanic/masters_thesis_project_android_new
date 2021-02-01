@@ -66,6 +66,20 @@ public class MainActivity extends AppCompatActivity {
         db.deleteRole(intRoleId);
     }
 
+    public void editRoleClick(View view){
+        Button bt=(Button)view;
+        String roleId = (String) view.getTag();
+        DbHandler db = new DbHandler(this);
+        int intRoleId  = Integer.valueOf(roleId);
+
+        // POSPREMITI U BAZU TRENUTNO AKTIVNU ULOGU PREMA intROLEId
+
+        db.saveActiveRole(intRoleId);
+
+        final NavController navController = Navigation.findNavController(view);
+        navController.navigate(R.id.action_rolesFragment_to_roleEditFragment);
+    }
+
     public void deleteProjectClick(View view){
         Button bt=(Button)view;
         String projectId = (String) view.getTag();
@@ -87,4 +101,50 @@ public class MainActivity extends AppCompatActivity {
         final NavController navController = Navigation.findNavController(view);
         navController.navigate(R.id.action_projectsFragment_to_projectMasterDetailsFragment);
     }
+
+    public void deleteProjectRoleByPersonClick(View view){
+        Button bt=(Button)view;
+        String personRoleId = (String) view.getTag();
+        DbHandler db = new DbHandler(this);
+        int intPersonRoleId  = Integer.valueOf(personRoleId);
+        Toast.makeText(this, "Obrisano zaduzenje: " + personRoleId, Toast.LENGTH_LONG).show();
+        // db.deleteUlogaOsobe(intPersonRoleId);
+    }
+
+    public void editProjectRoleByPersonClick(View view){
+        String projectId = (String) view.getTag();
+        DbHandler db = new DbHandler(this);
+        int intProjectId  = Integer.valueOf(projectId);
+
+        // POSPREMITI U BAZU TRENUTNO AKTIVNO ZADUZENJE PREMA idZaduzenja
+
+        db.saveActiveProject(intProjectId);
+
+        final NavController navController = Navigation.findNavController(view);
+        navController.navigate(R.id.action_projectsFragment_to_projectMasterDetailsFragment);
+    }
+
+    public void deleteProjectRoleByProjectClick(View view){
+        Button bt=(Button)view;
+        String personRoleId = (String) view.getTag();
+        DbHandler db = new DbHandler(this);
+        int intPersonRoleId  = Integer.valueOf(personRoleId);
+        Toast.makeText(this, "Obrisano zaduzenje: " + personRoleId, Toast.LENGTH_LONG).show();
+        // db.deleteUlogaOsobe(intPersonRoleId);
+    }
+
+    public void editProjectRoleByProjectClick(View view){
+        String projectId = (String) view.getTag();
+        DbHandler db = new DbHandler(this);
+        int intProjectId  = Integer.valueOf(projectId);
+
+        // POSPREMITI U BAZU TRENUTNO AKTIVNI PROJEKT PREMA idZaduzenja
+
+        db.saveActiveProject(intProjectId);
+
+        final NavController navController = Navigation.findNavController(view);
+        navController.navigate(R.id.action_projectsFragment_to_projectMasterDetailsFragment);
+    }
+
+
 }

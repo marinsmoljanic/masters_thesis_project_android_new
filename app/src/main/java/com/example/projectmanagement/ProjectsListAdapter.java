@@ -13,9 +13,6 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.navigation.fragment.NavHostFragment;
 
 public class ProjectsListAdapter extends ArrayAdapter<String> {
     int groupid;
@@ -57,9 +54,9 @@ public class ProjectsListAdapter extends ArrayAdapter<String> {
 
         String[] parts = item_list.get(position).split(";");
 
-        holder.textview.setText(parts[1] + " " + parts[2] + " " + parts[3]);
-        holder.buttonUpdate.setText("Uredi");
-        holder.buttonDelete.setText("Brisi");
+        holder.textview.setText(parts[1]);
+        holder.buttonUpdate.setText("Detalji");
+        holder.buttonDelete.setText("Obriši");
 
         int projektId = Integer.parseInt(parts[0]);
         holder.buttonDelete.setTag(String.valueOf(projektId));

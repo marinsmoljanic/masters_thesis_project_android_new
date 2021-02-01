@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PersonMasterDetailFragment extends Fragment {
 
@@ -33,33 +34,23 @@ public class PersonMasterDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-                /*
-        if (getArguments() != null){
-            PersonsFragmentArgs args = PersonsFragmentArgs.fromBundle(getArguments());
-
-            String message = args.getTestArgument();
-            Log.i(TAG, "Argument ------------------------> " + message);
-        }
-
-        action_personMasterDetailFragment_to_personRoleAddFragment
-         */
 
         final NavController navController = Navigation.findNavController(view);
 
-        DbHandler db = new DbHandler(context);
+        final DbHandler db = new DbHandler(context);
 
         int activePersonId = db.readActivePerson();
         String osoba = db.getOsoba(activePersonId);
 
         String[] parts = osoba.split(";");
 
-        String idOsobe = parts[0];
+        final String idOsobe = parts[0];
         String imeOsobe = parts[1];
         String prezimeOsobe = parts[2];
         String oibOsobe = parts[3];
 
-        EditText editTextPrezime = view.findViewById(R.id.PrezimeUnos);
-        EditText editTextIme = view.findViewById(R.id.ImeUnos);
+        final EditText editTextPrezime = view.findViewById(R.id.PrezimeUnos);
+        final EditText editTextIme = view.findViewById(R.id.ImeUnos);
         TextView myAwesomeTextView = (TextView)view.findViewById(R.id.OIB);
 
         editTextPrezime.setText(prezimeOsobe);
@@ -71,6 +62,15 @@ public class PersonMasterDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_personMasterDetailFragment_to_personRoleAddFragment);
+            }
+        });
+
+        Button updatePersonButton = view.findViewById(R.id.updatePerson);
+        updatePersonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.UpdateOsoba(editTextIme.getText().toString(), editTextPrezime.getText().toString(), idOsobe);
+                Toast.makeText(context, "Update: " + editTextIme.getText().toString() + " " + editTextPrezime.getText().toString(), Toast.LENGTH_LONG).show();
             }
         });
 

@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/toprounded_gray"
         android:textColor="@android:color/white"
         android:layout_weight="1"
         android:id="@+id/person_master_details_back_button"

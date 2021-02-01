@@ -83,8 +83,6 @@ public class DbHandler extends SQLiteOpenHelper {
         cv.put("PersonId", personId);
         db.insert("ActivePerson", null, cv);
 
-        // "UPDATE uloga SET NazUloge='\(naziv)' WHERE IdUloge=(?);"
-
         String UpdateTable = "UPDATE ActivePerson SET PersonId='" + personId + "' WHERE Id=1;";
 
         db.execSQL(UpdateTable);
@@ -151,6 +149,44 @@ public class DbHandler extends SQLiteOpenHelper {
         return Integer.parseInt(ProjectIdStr);
     }
 
+    public void saveActiveRole(int roleId) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        String Create_Table = "CREATE TABLE IF NOT EXISTS " + "ActiveRole" +
+                " (Id INTEGER PRIMARY KEY, RoleId INTEGER)";
+
+        db.execSQL(Create_Table);
+
+        ContentValues cv=new ContentValues();
+        cv.put("Id", 1);
+        cv.put("RoleId", roleId);
+        db.insert("ActiveRole", null, cv);
+
+        // "UPDATE uloga SET NazUloge='\(naziv)' WHERE IdUloge=(?);"
+
+        String UpdateTable = "UPDATE ActiveRole SET RoleId='" + roleId + "' WHERE Id=1;";
+
+        db.execSQL(UpdateTable);
+        db.close();
+    }
+
+    public int readActiveRole() {
+        String RoleIdStr = "";
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT RoleId FROM ActiveRole WHERE Id=1",
+                new String[]{});
+
+        if(cursor.getCount()>0) {
+            try {
+                cursor.moveToFirst();
+                RoleIdStr = cursor.getString(0);
+            } finally {
+                cursor.close();
+            }
+            cursor.close();
+        }
+
+        return Integer.parseInt(RoleIdStr);
+    }
 
 
 
@@ -202,8 +238,6 @@ public class DbHandler extends SQLiteOpenHelper {
                 new String[]{IdOsobe.toString()});
 
         if(cursor.getCount()>0) {
-            // cursor.moveToFirst();
-            // osoba_str = cursor.getString(0);
             try {
                 cursor.moveToFirst();
                 String prezime = cursor.getString(0);
@@ -214,15 +248,19 @@ public class DbHandler extends SQLiteOpenHelper {
             } finally {
                 cursor.close();
             }
-
             cursor.close();
         }
-
-
         return osoba_str;
     }
 
 
+    public void UpdateOsoba(String Ime, String Prezime, String Id){
+        SQLiteDatabase db=this.getReadableDatabase();
+        String UpdateTable = "UPDATE Osoba SET PrezimeOsobe='" + Prezime + "', ImeOsobe='" + Ime + "' WHERE IdOsobe=" + Id + ";";
+
+        db.execSQL(UpdateTable);
+        db.close();
+    }
 
 
 
@@ -263,7 +301,7 @@ public class DbHandler extends SQLiteOpenHelper {
         cv.put(Col2Projekt, projekt.getNazProjekta());
         cv.put(Col3Projekt, projekt.getOpisProjekta());
         cv.put(Col4Projekt, startDateStr);
-        cv.put(Col4Projekt, endDateStr);
+        cv.put(Col5Projekt, endDateStr);
         db.insert(TABLICA_PROJECT, null, cv);
         db.close();
     }
@@ -377,10 +415,17 @@ public class DbHandler extends SQLiteOpenHelper {
             uloga_str = cursor.getString(0);
             cursor.close();
         }
-
         return uloga_str;
     }
 
+
+    public void UpdateUloga(String NazUloge, int Id){
+        SQLiteDatabase db=this.getReadableDatabase();
+        String UpdateTable = "UPDATE Uloga SET NazUloge='" + NazUloge + "' WHERE idUloge=" + Id + ";";
+
+        db.execSQL(UpdateTable);
+        db.close();
+    }
 
 
 
@@ -466,6 +511,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public void addUlogaOsobe(PersonRole ulogaOsobe)
     {
+
         SQLiteDatabase db=this.getWritableDatabase();
         // createTableUlogaOsobe(db);
         ContentValues cv=new ContentValues();
@@ -475,6 +521,8 @@ public class DbHandler extends SQLiteOpenHelper {
         cv.put(Col4UlogaOsobe, ulogaOsobe.getDatDodjele());
         db.insert(TABLICA_ULOGAOSOBE, null, cv);
         db.close();
+
+
     }
 
     public Cursor readAllFromTableUlogaOsobe(){
@@ -519,6 +567,15 @@ public class DbHandler extends SQLiteOpenHelper {
         }
 
         return uloga_osobe;
+    }
+
+    public void deleteUlogaOsobe(int id)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        String deletePersonQuery = "DELETE FROM " + TABLICA_ULOGA + " WHERE IdUloge=" + id;
+
+        // db.execSQL(deletePersonQuery);
+        // db.close();
     }
 
 }

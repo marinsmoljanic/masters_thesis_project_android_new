@@ -51,25 +51,13 @@ public class PersonsListAdapter extends ArrayAdapter<String> {
 
         String[] parts = item_list.get(position).split(";");
 
-        holder.textview.setText(parts[1] + " " + parts[2] + " " + parts[3]);
+        holder.textview.setText(parts[1] + " " + parts[2]);
         holder.buttonUpdate.setText("Detalji");
         holder.buttonDelete.setText("Obriši");
 
         int osobaId = Integer.parseInt(parts[0]);
         holder.buttonDelete.setTag(String.valueOf(osobaId));
         holder.buttonUpdate.setTag(String.valueOf(osobaId));
-
-        /*
-        final NavController navController = Navigation.findNavController(rowView);
-        rowView.findViewById(R.id.btazu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(PersonsListAdapter.this)
-                        .navigate(R.id.action_personsFragment_to_personMasterDetailFragment);
-            }
-        });
-        */
-
 
         return rowView;
     }
