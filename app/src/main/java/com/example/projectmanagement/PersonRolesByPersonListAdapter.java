@@ -51,6 +51,11 @@ public class PersonRolesByPersonListAdapter extends ArrayAdapter<String> {
 
         String[] parts = item_list.get(position).split(";");
 
+        String sifProjekta = parts[0];
+        String idOsobe = parts[1];
+        String idUloge = parts[2];
+        String personName = parts[5] + " " + parts[6];
+
         holder.textview.setText("Uloga: " + parts[7] + " " + "\n\n" +
                                 "Projekt: " + parts[4] + " " + "\n\n" +
                                 "Datum dodjele: " + parts[3] + " " + "\n");
@@ -58,8 +63,8 @@ public class PersonRolesByPersonListAdapter extends ArrayAdapter<String> {
         holder.buttonDelete.setText("Obriši");
 
         int personRoleId = Integer.parseInt(parts[0]);
-        holder.buttonDelete.setTag(String.valueOf(personRoleId));
-        holder.buttonUpdate.setTag(String.valueOf(personRoleId));
+        holder.buttonDelete.setTag(sifProjekta + ";" + idOsobe + ";" + idUloge);
+        holder.buttonUpdate.setTag(sifProjekta + ";" + idOsobe + ";" + idUloge + ";" + personName);
 
         return rowView;
     }

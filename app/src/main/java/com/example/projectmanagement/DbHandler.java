@@ -188,6 +188,45 @@ public class DbHandler extends SQLiteOpenHelper {
         return Integer.parseInt(RoleIdStr);
     }
 
+    public void saveActivePersonRole(String tag) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        String Create_Table = "CREATE TABLE IF NOT EXISTS " + "ActivePersonRole" +
+                " (Id INTEGER PRIMARY KEY, Tag TEXT)";
+
+        db.execSQL(Create_Table);
+
+        ContentValues cv=new ContentValues();
+        cv.put("Id", 1);
+        cv.put("Tag", tag);
+        db.insert("ActivePersonRole", null, cv);
+
+        // "UPDATE uloga SET NazUloge='\(naziv)' WHERE IdUloge=(?);"
+
+        String UpdateTable = "UPDATE ActivePersonRole SET Tag='" + tag + "' WHERE Id=1;";
+
+        db.execSQL(UpdateTable);
+        db.close();
+    }
+
+    public String readActivePersonRole() {
+        String tag = "";
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT Tag FROM ActivePersonRole WHERE Id=1",
+                new String[]{});
+
+        if(cursor.getCount()>0) {
+            try {
+                cursor.moveToFirst();
+                tag = cursor.getString(0);
+            } finally {
+                cursor.close();
+            }
+            cursor.close();
+        }
+
+        return tag;
+    }
+
 
 
 
@@ -288,7 +327,7 @@ public class DbHandler extends SQLiteOpenHelper {
         Date endDate = projekt.getDatZavrsetka();
 
         @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd.MM.yyyy");
 
         String startDateStr = simpleDate.format(startDate);
         String endDateStr = simpleDate.format(endDate);
@@ -569,10 +608,37 @@ public class DbHandler extends SQLiteOpenHelper {
         return uloga_osobe;
     }
 
-    public void deleteUlogaOsobe(int id)
+    public void deleteUlogaOsobe(String tag)
     {
+        String[] parts = tag.split(";");
+
+        String sifProjekta = parts[0];
+        String idOsobe = parts[1];
+        String idUloge = parts[2];
+
         SQLiteDatabase db=this.getWritableDatabase();
-        String deletePersonQuery = "DELETE FROM " + TABLICA_ULOGA + " WHERE IdUloge=" + id;
+
+        //    public static final String Col1UlogaOsobe = "SifProjekta";
+        //    public static final String Col2UlogaOsobe = "IdOsobe";
+        //    public static final String Col3UlogaOsobe = "IdUloge";
+        //    public static final String Col4UlogaOsobe = "DatDodjele";
+
+        String deletePersonRoleQuery = "DELETE FROM " + TABLICA_ULOGAOSOBE + " WHERE IdUloge='" + idUloge +"' AND IdOsobe='" + idOsobe + "' AND SifProjekta='" + sifProjekta + "';";
+
+        db.execSQL(deletePersonRoleQuery);
+        db.close();
+    }
+
+    public void updateUlogaOsobe(String tag)
+    {
+        String[] parts = tag.split(";");
+
+        String sifProjekta = parts[0];
+        String idOsobe = parts[1];
+        String idUloge = parts[2];
+
+        SQLiteDatabase db=this.getWritableDatabase();
+        String deletePersonRoleQuery = "DELETE FROM " + TABLICA_ULOGA + " WHERE IdUloge=" + idUloge;
 
         // db.execSQL(deletePersonQuery);
         // db.close();

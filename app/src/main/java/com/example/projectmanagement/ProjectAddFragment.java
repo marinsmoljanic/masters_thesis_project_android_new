@@ -134,7 +134,7 @@ public class ProjectAddFragment extends Fragment {
         Date datum = new Date();
 
         try {
-            datum=new SimpleDateFormat("dd/MM/yyyy").parse(format("%s/%s/%s",
+            datum=new SimpleDateFormat("dd.MM.yyyy").parse(format("%s.%s.%s",
                     datumDan, datumMjesec, datumGodina));
 
 

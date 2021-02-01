@@ -118,7 +118,7 @@ public class PersonRoleAddFragment extends Fragment {
                 String _nazivUloge = ulogaSpinner.getSelectedItem().toString();
                 int month = datDodjele.getMonth() + 1;
 
-                String _datDodjele = datDodjele.getYear() + "-" + month + "-" + datDodjele.getDayOfMonth();
+                String _datDodjele = datDodjele.getDayOfMonth() + "." + month + "." + datDodjele.getYear();
                 String projectId = Objects.requireNonNull(projectsMap.get(_nazivProjekta));
                 Integer projectIdInt = Integer.parseInt(projectId);
                 String personId = Objects.requireNonNull(personsMap.get(_nazivOsobe));

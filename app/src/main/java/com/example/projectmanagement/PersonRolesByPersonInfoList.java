@@ -36,10 +36,10 @@ public class PersonRolesByPersonInfoList {
         */
 
         Cursor cursor = readDb.readAllUlogaOsobe();
+        int activePersonId = readDb.readActivePerson();
 
         listView = (ListView) view.findViewById(R.id.project_roles_by_person_list);
         listaZaduzenja = new ArrayList<String>();
-        Log.d("myTag", "This is my message");
 
         try {
             cursor.moveToFirst();
@@ -54,8 +54,11 @@ public class PersonRolesByPersonInfoList {
                 String NazivUloge = cursor.getString(7);
 
                 // UVJET NA AKTIVNU OSOBU
-                listaZaduzenja.add(SifProjekta + ";"  + IdOsobe + ";" + IdUloge + ";" + DatDodjele + ";" +
-                                   NazProjekta + ";" + ImeOsobe + ";" + PrezimeOsobe + ";" + NazivUloge);
+
+                if(Integer.parseInt(IdOsobe) == activePersonId){
+                    listaZaduzenja.add(SifProjekta + ";"  + IdOsobe + ";" + IdUloge + ";" + DatDodjele + ";" +
+                            NazProjekta + ";" + ImeOsobe + ";" + PrezimeOsobe + ";" + NazivUloge);
+                }
             }
         } finally {
             cursor.close();

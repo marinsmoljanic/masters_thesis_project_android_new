@@ -1,64 +1,110 @@
 package com.example.projectmanagement;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProjectRoleByPersonUpdateFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
 public class ProjectRoleByPersonUpdateFragment extends Fragment {
+    private Context context;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    ArrayList<String> listaProjekata;
+    ArrayList<String> listaProjekataFiltered  = new ArrayList<>();
+    final HashMap<String, String> projectsMap = new HashMap<String, String>();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ArrayList<String> listaUloga;
+    ArrayList<String> listaUlogaFiltered  = new ArrayList<>();
+    final HashMap<String, String> rolesMap = new HashMap<String, String>();
 
     public ProjectRoleByPersonUpdateFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProjectRoleByPersonUpdateFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProjectRoleByPersonUpdateFragment newInstance(String param1, String param2) {
-        ProjectRoleByPersonUpdateFragment fragment = new ProjectRoleByPersonUpdateFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        context = this.getActivity();
         return inflater.inflate(R.layout.fragment_project_role_by_person_update, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        final NavController navController = Navigation.findNavController(view);
+
+        DbHandler db = new DbHandler(context);
+
+        String activePersonRoleTag = db.readActivePersonRole();
+        String[] parts = activePersonRoleTag.split(";");
+
+        String sifProjekta = parts[0];
+        String idOsobe = parts[1];
+        String idUloge = parts[2];
+        String personName = parts[3];
+
+        final Spinner projektSpinner = (Spinner) view.findViewById(R.id.SifProjektaUnos);
+        final Spinner ulogaSpinner = (Spinner) view.findViewById(R.id.IdUlogeUnos);
+
+        ProjectInfoList projectInfoList = new ProjectInfoList(context, view);
+        listaProjekata = projectInfoList.getList();
+
+
+        for (int i=0; i<listaProjekata.size(); i++){
+            String[] partsProjects = listaProjekata.get(i).split(";");
+            String nazivProjekta = partsProjects[1];
+            projectsMap.put(partsProjects[1], partsProjects[0]);
+            listaProjekataFiltered.add(nazivProjekta);
+        }
+
+        RoleInfoList roleInfoList = new RoleInfoList(context, view);
+        listaUloga = roleInfoList.getList();
+
+        for (int i=0; i<listaUloga.size(); i++){
+            String[] partsRoles = listaUloga.get(i).split(";");
+            String nazivUloge = partsRoles[1];
+            rolesMap.put(partsRoles[1], partsRoles[0]);
+            listaUlogaFiltered.add(nazivUloge);
+        }
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> spinnerArrayAdapterProjects = new ArrayAdapter<String> (context, android.R.layout.simple_spinner_item, listaProjekataFiltered);
+        ArrayAdapter<String> spinnerArrayAdapterRoles = new ArrayAdapter<String> (context, android.R.layout.simple_spinner_item, listaUlogaFiltered);
+
+        // Specify the layout to use when the list of choices appears
+        spinnerArrayAdapterProjects.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerArrayAdapterRoles.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        projektSpinner.setAdapter(spinnerArrayAdapterProjects);
+        ulogaSpinner.setAdapter(spinnerArrayAdapterRoles);
+
+
+        TextView nazivOsobe = view.findViewById(R.id.nazivOsobe);
+        nazivOsobe.setText(personName);
+
+        Button updatePersonRole = view.findViewById(R.id.PohraniGumb);
+        updatePersonRole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                navController.navigate(R.id.action_projectRoleByPersonUpdateFragment_to_projectRoleByPersonListFragment);
+            }
+        });
     }
 }

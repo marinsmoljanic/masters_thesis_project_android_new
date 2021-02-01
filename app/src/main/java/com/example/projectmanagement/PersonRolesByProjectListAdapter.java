@@ -50,17 +50,22 @@ public class PersonRolesByProjectListAdapter extends ArrayAdapter<String> {
 
         String[] parts = item_list.get(position).split(";");
 
-        holder.textview.setText("Uloga: " + parts[7] + " " + "\n\n" +
-                                "Projekt: " + parts[4] + " " + "\n\n" +
+        // SifProjekta + ";"  + IdOsobe + ";" + IdUloge + ";" + DatDodjele + ";" + NazProjekta + ";" + ImeOsobe + ";" + PrezimeOsobe + ";" + NazivUloge
+
+        String sifProjekta = parts[0];
+        String idOsobe = parts[1];
+        String idUloge = parts[2];
+        String projectName = parts[4];
+
+        holder.textview.setText("Osoba: " + parts[5] + " "  + parts[6] + "\n\n" +
+                                "Uloga: " + parts[7] + " " + "\n\n" +
                                 "Datum dodjele: " + parts[3] + " " + "\n");
         holder.buttonUpdate.setText("Uredi");
         holder.buttonDelete.setText("Brisi");
 
         int personRoleId = Integer.parseInt(parts[0]);
-        holder.buttonDelete.setTag(String.valueOf(personRoleId));
-        holder.buttonUpdate.setTag(String.valueOf(personRoleId));
-
-
+        holder.buttonDelete.setTag(sifProjekta + ";" + idOsobe + ";" + idUloge);
+        holder.buttonUpdate.setTag(sifProjekta + ";" + idOsobe + ";" + idUloge  + ";" + projectName);
 
         return rowView;
     }

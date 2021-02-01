@@ -7,54 +7,59 @@
     android:layout_height="match_parent"
     tools:context=".ProjectRoleByProjectUpdateFragment">
 
-
 <TextView
     android:id="@+id/Naslov"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Unos podataka osobe"
+    android:layout_height="30dp"
+    android:text="Promjena zaduzenja osoba"
+
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/PrezimeUnos" />
+    app:layout_constraintBottom_toTopOf="@id/nazivOsobe" />
 
-<EditText
-    android:id="@+id/PrezimeUnos"
+<TextView
+    android:id="@+id/nazivOsobe"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:ems="10"
-    android:inputType="textPersonName"
+    android:text="PROJEKT"
 
-    android:hint="Prezime"
-    app:layout_constraintTop_toBottomOf="@id/Naslov"
+    app:layout_constraintTop_toBottomOf="@+id/Naslov"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/ImeUnos" />
+    app:layout_constraintBottom_toTopOf="@id/SifOsobeUnos" />
 
+<Spinner
+    android:id="@+id/SifOsobeUnos"
+    android:layout_width="300dp"
+    android:layout_height="50dp"
 
-<EditText
-    android:id="@+id/ImeUnos"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:inputType="textPersonName"
-
-    android:hint="Ime"
-    app:layout_constraintTop_toBottomOf="@id/PrezimeUnos"
+    app:layout_constraintBottom_toTopOf="@id/IdUlogeUnos"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/OIBUnos"/>
+    app:layout_constraintTop_toBottomOf="@id/nazivOsobe" />
 
 
-<EditText
-    android:id="@+id/OIBUnos"
+<Spinner
+    android:id="@+id/IdUlogeUnos"
+    android:layout_width="300dp"
+    android:layout_height="50dp"
+
+    app:layout_constraintBottom_toTopOf="@id/DatDodjeleUnos"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/SifOsobeUnos" />
+
+
+<DatePicker
+    android:id="@+id/DatDodjeleUnos"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:datePickerMode="spinner"
+    android:calendarViewShown="false"
     android:ems="10"
-    android:inputType="textPersonName"
 
-    android:hint="OIB"
-    app:layout_constraintTop_toBottomOf="@id/ImeUnos"
+    app:layout_constraintTop_toBottomOf="@id/IdUlogeUnos"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintBottom_toTopOf="@id/PohraniGumb" />
@@ -65,11 +70,9 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_gravity="center"
-
-    android:background="@android:color/holo_orange_dark"
+    android:background="@drawable/upper_rounded"
     android:text="Pohrani"
     android:textColor="@android:color/white"
-
 
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -78,9 +81,8 @@
 <Button
     android:id="@+id/PovratniGumb"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="0.1dp"
     android:layout_gravity="center"
-
     android:background="@android:color/holo_blue_light"
     android:text="Povratak"
     android:textColor="@android:color/white"
@@ -89,6 +91,4 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
